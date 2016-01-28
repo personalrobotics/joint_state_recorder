@@ -3,7 +3,7 @@ Record ROS JointState messages and index them by time.
 
 Usage:
 
-```
+```c++
 #include <joint_state_recorder/JointStateRecorder.h>
 #include <sensor_msgs/JointState.h>
 

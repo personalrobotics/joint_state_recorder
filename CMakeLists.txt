@@ -42,11 +42,17 @@ include_directories(
  add_library(joint_state_recorder
    src/JointStateRecorder.cpp
  )
+ 
+ add_executable(unit_test
+   src/unit_test.cpp
+   )
 
 ## Specify libraries to link a library or executable target against
  target_link_libraries(joint_state_recorder
    ${catkin_LIBRARIES}
  )
+
+target_link_libraries(unit_test joint_state_recorder ${catkin_LIBRARIES})
 
 #############
 ## Install ##

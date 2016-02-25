@@ -34,3 +34,17 @@ catch (std::invalid_argument& e)
 ```
 
 This allows the user to synchronize joint state messages with other messages, to determine what the state of the robot was at a given time (similar to `tf`). States are linearly interpolated. 
+
+## Continuous Joints
+
+If your robot has continuous (i.e non-limited) joints, you can tell `JointStateRecorder` this information by providing a map from joint name to whether the joint is continuous like this:
+
+```c++
+std::map<std::string, bool> continuousJoints;
+continuousJoints["continuous_joint_1"] = true;
+continuousJoints["limited_joint_2"] = false;
+//...
+JointStateRecorder recorder(nodeHandle, continuousJoints);
+```
+
+The continuous joints will be forced into the range of `-PI` to `PI` and will wrap with circular topology. Non-continuous joints will linearly interpolate like any other real number.

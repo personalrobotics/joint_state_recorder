@@ -17,10 +17,14 @@ recorder.Subscribe("your_topic_name");
 ros::spinOnce();
 //...
 
+// Get a timestamp from some other sensor message 
+// (like a camera)
+ros::Time timestamp = ...
+
 // Get the joint state at the given time.
 try
 {
-  sensor_msgs::JointState currentJointState = recorder.InterpState(ros::Time::now());
+  sensor_msgs::JointState recordedJointState = recorder.InterpState(timestamp);
 }
 catch (std::invalid_argument& e)
 {

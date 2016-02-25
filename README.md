@@ -41,6 +41,8 @@ If your robot has continuous (i.e non-limited) joints, you can tell `JointStateR
 
 ```c++
 std::map<std::string, bool> continuousJoints;
+// The robot has one continuous joint, and one 
+// limited joint.
 continuousJoints["continuous_joint_1"] = true;
 continuousJoints["limited_joint_2"] = false;
 //...

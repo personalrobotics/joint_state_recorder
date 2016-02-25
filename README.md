@@ -18,8 +18,15 @@ ros::spinOnce();
 //...
 
 // Get the joint state at the given time.
-sensor_msgs::JointState currentJointState = recorder.InterpState(ros::Time::now());
-
+try
+{
+  sensor_msgs::JointState currentJointState = recorder.InterpState(ros::Time::now());
+}
+catch (std::invalid_argument& e)
+{
+  // This is thrown whenever the provided time is before or after joint data exists.
+  // (similar to tf::ExtrapolationException)
+}
 ```
 
 This allows the user to synchronize joint state messages with other messages, to determine what the state of the robot was at a given time (similar to `tf`). States are linearly interpolated. 
